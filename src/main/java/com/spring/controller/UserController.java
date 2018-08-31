@@ -1,6 +1,6 @@
 package com.spring.controller;
 
-import com.spring.entity.UserEntity;
+import com.spring.entity.User;
 import com.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ public class UserController {
 
     @RequestMapping("/list")
     public String list(Model model){
-        List<UserEntity> list = userService.getAll();
+        List<User> list = userService.getAll();
         model.addAttribute("users",list);
         return "user/list";
     }
@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @RequestMapping("/add")
-    public String add(UserEntity user){
+    public String add(User user){
         Date date = new Date();
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
         String formattedDate = dateFormat.format(date);
@@ -47,13 +47,13 @@ public class UserController {
 
     @RequestMapping("/toEdit")
     public String toEdit(Model model,Long id) {
-        UserEntity user=userService.getOne(id);
+        User user=userService.getOne(id);
         model.addAttribute("user", user);
         return "user/userEdit";
     }
 
     @RequestMapping("/edit")
-    public String edit(UserEntity user) {
+    public String edit(User user) {
         userService.update(user);
         return "redirect:/list";
     }
