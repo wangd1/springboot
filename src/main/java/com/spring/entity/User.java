@@ -23,7 +23,9 @@ public class User implements Serializable {
     @Column(nullable = true, unique = true)
     private String nickName;
     @Column(nullable = false)
-    private String regTime; 
+    private String regTime;
+    @Column(nullable = false)
+    private String filePath;
 
     public User(String userName, String email, String nickName, String password, String regTime) {
         this.userName = userName;
@@ -86,5 +88,13 @@ public class User implements Serializable {
 
     public void setRegTime(String regTime) {
         this.regTime = regTime;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 }

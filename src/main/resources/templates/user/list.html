@@ -15,6 +15,7 @@
         <tr>
             <th>#</th>
             <th>User Name</th>
+            <th>Image</th>
             <th>Nick Name</th>
             <th>Password</th>
             <th>Email</th>
@@ -27,6 +28,9 @@
         <tr  th:each="user : ${users}">
             <th scope="row" th:text="${user.id}">1</th>
             <td th:text="${user.userName}">neo</td>
+            <td>
+                <img th:src="@{${user.filePath}}"/>
+            </td>
             <td th:text="${user.nickName}">neo</td>
             <td th:text="${user.password}">Otto</td>
             <td th:text="${user.email}">6</td>

@@ -8,10 +8,11 @@
         <result property="email" column="email" jdbcType="VARCHAR"/>
         <result property="nickName" column="nick_name" jdbcType="VARCHAR" />
         <result property="regTime" column="reg_time" jdbcType="VARCHAR" />
+        <result property="filePath" column="file_path" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        id, user_name, password, email, nick_name,reg_time
+        id, user_name, password, email, nick_name,reg_time,file_path
     </sql>
 
     <select id="getAll" resultMap="BaseResultMap"  >
@@ -30,9 +31,9 @@
     <insert id="insert" parameterType="com.spring.entity.User" >
         INSERT INTO
         user
-        (user_name,password,nick_name,email,reg_time)
+        (user_name,password,nick_name,email,reg_time,file_path)
         VALUES
-        (#{userName}, #{password}, #{nickName},#{email},#{regTime})
+        (#{userName}, #{password}, #{nickName},#{email},#{regTime},#{filePath})
     </insert>
 
     <update id="update" parameterType="com.spring.entity.User" >
@@ -42,7 +43,8 @@
         <if test="userName != null">user_name = #{userName},</if>
         <if test="password != null">password = #{password},</if>
         nick_name = #{nickName},
-        email = #{email}
+        email = #{email},
+        <if test="filePath != null and filePath != ''">file_path = #{filePath}</if>
         WHERE
         id = #{id}
     </update>
