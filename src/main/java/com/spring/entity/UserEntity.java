@@ -23,7 +23,7 @@ public class UserEntity implements Serializable {
     @Column(nullable = true, unique = true)
     private String nickName;
     @Column(nullable = false)
-    private String regTime;
+    private String regTime; 
 
     public UserEntity(String userName, String email, String nickName, String password, String regTime) {
         this.userName = userName;
