@@ -1,7 +1,7 @@
-package com.spring.springboot.service;
+package com.spring.service;
 
-import com.spring.springboot.entity.UserEntity;
-import com.spring.springboot.mapper.UserMapper;
+import com.spring.entity.UserEntity;
+import com.spring.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

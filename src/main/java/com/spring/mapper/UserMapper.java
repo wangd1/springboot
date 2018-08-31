@@ -1,6 +1,6 @@
-package com.spring.springboot.mapper;
+package com.spring.mapper;
 
-import com.spring.springboot.entity.UserEntity;
+import com.spring.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
