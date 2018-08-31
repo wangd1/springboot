@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>视频</title>
+	<script src="./jquery-1.8.3.js"></script>
+    <link href="./video-js.css" rel="stylesheet">
+    <script src="http://vjs.zencdn.net/ie8/1.1.0/videojs-ie8.min.js"></script>
+    <script src="http://vjs.zencdn.net/5.0.2/video.js"></script>
+	<script th:inline="javascript">
+		$(function(){
+		    var username = /*[[${user.userName}]]*/;
+			//alert(username);
+		})
+	</script>
+</head>
+
+<body style="margin:0 auto;">
+	<div id="videoDiv">
+		<p th:text="${user.userName}"></p>
+		<span th:text="${user.nickName}"></span>
+	</div>
+	<div th:object="${user1}">
+		<span th:text="*{email}">123</span>
+	</div>
+
+	<div>
+		<table th:each="collect,iterStat:${list}">
+			<tr>
+				<td th:text="${iterStat.index}"></td>
+				<td th:text="${collect.userName}"></td>
+				<td th:text="${collect.nickName}"></td>
+				<td th:text="${collect.email}"></td>
+				<td th:text="${collect.regTime}"></td>
+			</tr>
+		</table>
+
+	</div>
+
+</body>
+
+</html>

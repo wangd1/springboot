@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.springboot.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.spring.springboot.entity.UserEntity" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result property="userName" column="user_name" jdbcType="VARCHAR" />
+        <result property="password" column="password" jdbcType="VARCHAR" />
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="nickName" column="nick_name" jdbcType="VARCHAR" />
+        <result property="regTime" column="reg_time" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, user_name, password, email, nick_name,reg_time
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM user
+    </select>
+
+    <select id="getOne" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.spring.springboot.entity.UserEntity" >
+        INSERT INTO
+        user
+        (user_name,password,nick_name,email,reg_time)
+        VALUES
+        (#{userName}, #{password}, #{nickName},#{email},#{regTime})
+    </insert>
+
+    <update id="update" parameterType="com.spring.springboot.entity.UserEntity" >
+        UPDATE
+        user
+        SET
+        <if test="userName != null">user_name = #{userName},</if>
+        <if test="password != null">password = #{password},</if>
+        nick_name = #{nickName},
+        email = #{email}
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM
+        user
+        WHERE
+        id =#{id}
+    </delete>
+</mapper>
