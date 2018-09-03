@@ -1,19 +1,19 @@
 package com.spring.mapper;
 
-import com.spring.entity.UserEntity;
+import com.spring.entity.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public interface UserMapper {
-    List<UserEntity> getAll();
+    List<User> getAll();
 
-    UserEntity getOne(Long id);
+    User getOne(Long id);
 
-    void insert(UserEntity user);
+    void insert(User user);
 
-    void update(UserEntity user);
+    void update(User user);
 
     void delete(Long id);
 }

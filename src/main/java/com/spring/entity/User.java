@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class UserEntity implements Serializable {
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -25,7 +25,7 @@ public class UserEntity implements Serializable {
     @Column(nullable = false)
     private String regTime; 
 
-    public UserEntity(String userName, String email, String nickName, String password, String regTime) {
+    public User(String userName, String email, String nickName, String password, String regTime) {
         this.userName = userName;
         this.password = password;
         this.email = email;
@@ -33,7 +33,7 @@ public class UserEntity implements Serializable {
         this.regTime = regTime;
     }
 
-    public UserEntity() {
+    public User() {
     }
 
     public static long getSerialVersionUID() {
