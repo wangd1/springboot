@@ -10,7 +10,7 @@ public class FileUtils {
 
     public static String fileUpload(MultipartFile file) {
         if (file.isEmpty()) {
-            System.out.println("文件为空空");
+            System.out.println("未选择文件");
         }
         String fileName = file.getOriginalFilename();  // 文件名
         String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
