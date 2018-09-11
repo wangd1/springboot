@@ -2,9 +2,12 @@ package com.spring.service;
 
 import com.spring.entity.User;
 import com.spring.mapper.UserMapper;
+import com.spring.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -21,11 +24,19 @@ public class UserService {
         return userMapper.getOne(id);
     }
 
-    public void insert(User user){
+    @Transactional
+    public void insert(User user,MultipartFile file){
+
+        String fileName = FileUtils.fileUpload(file);
+        user.setFilePath(fileName);
         userMapper.insert(user);
     }
 
-    public void update(User user){
+    @Transactional
+    public void update(User user,MultipartFile file){
+
+        String fileName = FileUtils.fileUpload(file);
+        user.setFilePath(fileName);
         userMapper.update(user);
     }
 

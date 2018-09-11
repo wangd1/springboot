@@ -42,9 +42,9 @@
         SET
         <if test="userName != null">user_name = #{userName},</if>
         <if test="password != null">password = #{password},</if>
+        <if test="filePath != null and filePath != ''">file_path = #{filePath},</if>
         nick_name = #{nickName},
-        email = #{email},
-        <if test="filePath != null and filePath != ''">file_path = #{filePath}</if>
+        email = #{email}
         WHERE
         id = #{id}
     </update>
