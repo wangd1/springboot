@@ -1,43 +1,75 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+    <meta charset="UTF-8">
+    <title>Java后端WebSocket的Tomcat实现</title>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <!--<link href=/static/css/app.30790115300ab27614ce176899523b62.css rel=stylesheet>-->
 
-    <title>视频</title>
-	<script src="./jquery-1.8.3.js"></script>
-    <link href="./video-js.css" rel="stylesheet">
-    <script src="http://vjs.zencdn.net/ie8/1.1.0/videojs-ie8.min.js"></script>
-    <script src="http://vjs.zencdn.net/5.0.2/video.js"></script>
-	<script th:inline="javascript">
-		$(function(){
-		    var username = /*[[${user.userName}]]*/;
-			//alert(username);
-		})
-	</script>
 </head>
+<body>
+    <!--<div id=app></div>
+    <script type=text/javascript src=/static/js/manifest.2ae2e69a05c33dfc65f8.js></script>
+    <script type=text/javascript src=/static/js/vendor.2420502e2b2c7f321d64.js></script>
+    <script type=text/javascript src=/static/js/app.b22ce679862c47a75225.js></script>-->
 
-<body style="margin:0 auto;">
-	<div id="videoDiv">
-		<p th:text="${user.userName}"></p>
-		<span th:text="${user.nickName}"></span>
-	</div>
-	<div th:object="${user1}">
-		<span th:text="*{email}">123</span>
-	</div>
-
-	<div>
-		<table th:each="collect,iterStat:${list}">
-			<tr>
-				<td th:text="${iterStat.index}"></td>
-				<td th:text="${collect.userName}"></td>
-				<td th:text="${collect.nickName}"></td>
-				<td th:text="${collect.email}"></td>
-				<td th:text="${collect.regTime}"></td>
-			</tr>
-		</table>
-
-	</div>
-
+    Welcome<br/><input id="text" type="text"/>
+    <button onclick="send()">发送消息</button>
+    <hr/>
+    <button onclick="closeWebSocket()">关闭WebSocket连接</button>
+    <hr/>
+    <div id="message"></div>
 </body>
+<script type="text/javascript">
+    var websocket = null;
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+        //websocket = new WebSocket("ws://localhost:8080/web1/websocket");
+        websocket = new WebSocket("ws://127.0.0.1:8090/ws");
+    }
+    else {
+        alert('当前浏览器 Not support websocket')
+    }
 
+    //连接发生错误的回调方法
+    websocket.onerror = function () {
+        setMessageInnerHTML("WebSocket连接发生错误");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function () {
+        setMessageInnerHTML("WebSocket连接成功");
+    }
+
+    //接收到消息的回调方法
+    websocket.onmessage = function (event) {
+        setMessageInnerHTML(event.data);
+    }
+
+    //连接关闭的回调方法
+    websocket.onclose = function () {
+        setMessageInnerHTML("WebSocket连接关闭");
+    }
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function () {
+        closeWebSocket();
+    }
+
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML) {
+        document.getElementById('message').innerHTML += innerHTML + '<br/>';
+    }
+
+    //关闭WebSocket连接
+    function closeWebSocket() {
+        websocket.close();
+    }
+
+    //发送消息
+    function send() {
+        var message = document.getElementById('text').value;
+        websocket.send(message);
+    }
+</script>
 </html>

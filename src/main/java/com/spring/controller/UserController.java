@@ -19,10 +19,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/")
+    @RequestMapping("/index")
     public String index(){
-        return "redirect:/list";
+
+        return "index";
     }
+
 
     @RequestMapping("/list")
     public String list(Model model){
