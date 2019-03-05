@@ -22,7 +22,7 @@ public class MailServiceTest {
     //测试普通邮件
     @Test
     public void sendSimpleMail() throws Exception {
-        //mailService.sendSimpleMail("1814380567@qq.com","这是一个测试邮件","https://www.baidu.com");
+        //mailService.sendSimpleMail("1814380567@qq.com","这是一个测试邮件","https://www.baidu.com");11111111
     }
 
     //html邮件
