@@ -1,5 +1,9 @@
 package com.spring.utils;
 
+import com.spring.SpringUtil;
+import com.spring.entity.BraveInfo;
+import com.spring.service.BraveInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -7,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.websocket.OnClose;
@@ -19,8 +25,10 @@ import javax.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/ws")
 @Component
-public class WSServer 
+public class WSServer
 {
+    private BraveInfoService braveInfoService;
+
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。  
     private static int onlineCount = 0;  
 
@@ -38,8 +46,9 @@ public class WSServer
         this.session = session;  
         ssMap.put(session, this);
         addOnlineCount();           //在线数加1  
-        System.out.println("有新连接加入！当前在线人数为" + getOnlineCount());  
-    }  
+        System.out.println("有新连接加入！当前在线人数为" + getOnlineCount());
+        GetTopTen();
+    }
 
     /** 
      * 连接关闭调用的方法 
@@ -98,5 +107,20 @@ public class WSServer
 
     public static synchronized void subOnlineCount() {  
         WSServer.onlineCount--;  
+    }
+
+    //提供的接口
+    //1
+    void SaveBraveId(String braveId){
+
+    }
+
+
+
+    private List<BraveInfo> GetTopTen(){
+        braveInfoService = (BraveInfoService)SpringUtil.getBean("braveInfoService");
+        List<BraveInfo> braveInfoList = braveInfoService.getAll();
+        System.out.println(braveInfoList.size());
+        return braveInfoList;
     }
 }
