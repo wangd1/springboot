@@ -46,3 +46,26 @@ HELP.md
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+spring-boot-01-helloworld/src/main/resources/static/
+spring-boot-01-helloworld/src/main/resources/templates/
+spring-boot-02-config/src/main/resources/static/
+spring-boot-02-config/src/main/resources/templates/
+spring-boot-03-logging/src/main/resources/static/
+spring-boot-03-logging/src/main/resources/templates/
+spring-boot-04-webstatic/src/main/resources/templates/
+spring-boot-05-thymeleaf/src/main/resources/static/
+spring-boot-06-freemark/src/main/resources/static/
+spring-boot-07-mybatis/src/main/resources/static/
+spring-boot-07-mybatis/src/main/resources/templates/
+spring-boot-08-jpa/src/main/resources/static/
+spring-boot-08-jpa/src/main/resources/templates/
+spring-boot-09-swagger2/src/main/resources/static/
+spring-boot-09-swagger2/src/main/resources/templates/
+spring-boot-10-shiro/src/main/resources/static/
+spring-boot-11-session/src/main/resources/static/
+spring-boot-11-session/src/main/resources/templates/
+spring-boot-12-rabbitmq-provider/src/main/resources/static/
+spring-boot-12-rabbitmq-provider/src/main/resources/templates/
+spring-boot-13-fastdfs/src/main/resources/static/
+spring-boot-rmq/src/main/resources/static/
+spring-boot-rmq/src/main/resources/templates/
