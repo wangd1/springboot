@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
+</head>
+<body>
+<form action="/upload/uploadFile" method="post" enctype="multipart/form-data" >
+    <input type="file" multiple name="files"></input>
+    <button type="submit">提 交</button>
+</form>
+<h1 th:text="${msg}"></h1>
+<a th:href="${imageUrl}"></a>
+</body>
+</html>
